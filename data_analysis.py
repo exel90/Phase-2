@@ -108,19 +108,3 @@ for i, comp in enumerate(lda_model.components_):
     for t in sorted_words:
         print(t[0],end=" ")
     print("\n")
-
-
-'''
-1. Module importieren
-2. CSV Dateien importieren
-3. alles in Kleinbuchstaben
-4. Sonderzeichen entfernen
-5. Konvertierung in numerische Vektorren mit Bag of Words (Pandas und Sklearn) und TF-IDF (scikit-learn)
-6. Extraktion, der am häufigsten vorkommenden Themen werden die Latente Semantische Analyse (LSA) und die Latent Dirichlet Allocation (LDA) Methode (Sklearn-Pakets)
-'''
-
-'''
-Beschreibe dein Datenset (welche Feature werden verwendet)
-Ergänze deine Pre-Processing-Pipeline wie Stopwortfilter, N-Grams, Min/Max von Termen
-Schaue dir ebenfalls im Course Feed das Thema Coherence Score an.
-'''
