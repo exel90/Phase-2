@@ -21,15 +21,18 @@ print("----------------------")
 print(df.head())
 print()
 
+#Alles Kleinbuchstaben
+lower_text = df['Review Text'].str.lower()
+
 # Entfernen von Sonderzeichen mit Hilfe von Regex
 pattern = r'[^\w\s]'
-df['Review Text'] = df['Review Text'].replace(pattern, '', regex=True)
+removed_special = lower_text.replace(pattern, '', regex=True)
 
 # Konvertieren der Spalte zu einem String
-df["Review Text"] = df["Review Text"].astype(str)
+removed_special = removed_special.astype(str)
 
 #Tokensierung jedes Wortes
-tokenized = df["Review Text"].apply(word_tokenize)
+tokenized = removed_special.apply(word_tokenize)
 print("tokenized erste 5 Zeilen:")
 print("----------------------")
 print(tokenized.head())
@@ -37,8 +40,8 @@ print()
 
 #Entfernung von Stop-Wörtern
 stop_words = set(stopwords.words('english'))
-stop_words_removed=tokenized.astype(str).apply(lambda line: [token for token in word_tokenize(line) if token not in stop_words])
- 
+stop_words_removed = tokenized.apply(lambda x: [item for item in x if item not in stop_words])
+
 print("stop_words_removed erste 5 Zeilen:")
 print("----------------------")
 print(stop_words_removed.head())
@@ -76,7 +79,7 @@ print()
 
 
 #LSA
-LSA_model = TruncatedSVD(n_components=5, algorithm='randomized', n_iter=10)
+LSA_model = TruncatedSVD(algorithm='randomized',n_components=100)
 lsa = LSA_model.fit_transform(model)
 
 # Ausgabe der 5 fünf wichtigsten Wörter für die 5 Topics
@@ -93,7 +96,7 @@ for i, comp in enumerate(LSA_model.components_):
 print()
 
 #LDA
-lda_model=LatentDirichletAllocation(n_components=5,learning_method='online',random_state=42,max_iter=1)
+lda_model=LatentDirichletAllocation(n_components=100,learning_method='online',random_state=42)
 lda_top=lda_model.fit_transform(model)
 
 # Ausgabe der 5 fünf wichtigsten Wörter für die 5 Topics
