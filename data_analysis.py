@@ -14,12 +14,11 @@ from sklearn.decomposition import LatentDirichletAllocation
 from functools import reduce
 from gensim.models.coherencemodel import CoherenceModel
 from gensim.corpora.dictionary import Dictionary
-from multiprocessing import freeze_support
 
 def main():
 
     # Import der Daten
-    df = pd.read_csv('reviews2.csv')
+    df = pd.read_csv('reviews.csv')
     print("Import erste 5 Zeilen:")
     print("----------------------")
     print(df.head())
@@ -83,7 +82,7 @@ def main():
 
 
     #LSA
-    LSA_model = TruncatedSVD(algorithm='randomized',n_components=10)
+    LSA_model = TruncatedSVD(algorithm='randomized',n_components=100)
     lsa = LSA_model.fit_transform(model)
 
     # Ausgabe der 5 fünf wichtigsten Wörter für die 5 Topics
