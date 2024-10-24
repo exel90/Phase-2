@@ -82,7 +82,7 @@ def main():
 
 
     #LSA
-    LSA_model = TruncatedSVD(algorithm='randomized',n_components=100)
+    LSA_model = TruncatedSVD(algorithm='randomized',n_components=5)
     lsa = LSA_model.fit_transform(model)
 
     # Ausgabe der 5 fünf wichtigsten Wörter für die 5 Topics
@@ -99,7 +99,7 @@ def main():
     print()
 
     #LDA
-    lda_model=LatentDirichletAllocation(n_components=100,learning_method='online',random_state=42)
+    lda_model=LatentDirichletAllocation(n_components=5,learning_method='online',random_state=42)
     lda_top=lda_model.fit_transform(model)
 
     # Ausgabe der 5 fünf wichtigsten Wörter für die 5 Topics
